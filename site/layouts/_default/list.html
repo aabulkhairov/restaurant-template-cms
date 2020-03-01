@@ -1,8 +1,13 @@
+<--! site/layouts/_default/list.html -->
+
 {{ partial "header" . }}
 
 <div class="content container {{ .Title }} {{ .Section | urlize }}">
   <h1>{{ .Section }}</h1>
+  <!-- Sections are defined in the config.toml -->
+  <!-- Food -->
   {{ if eq .Section "food" }}
+    <!-- categories are defined in the site/content -->
     {{ range $taxonomyname, $taxonomy := .Site.Taxonomies }}
       <section>
         {{ if eq "categories" $taxonomyname }}
@@ -26,6 +31,7 @@
         {{ end }}
       </section>
     {{ end }}
+  <!-- Drinks -->
   {{ else if eq .Section "drinks" }}
     {{ range $taxonomyname, $taxonomy := .Site.Taxonomies }}
       <section>
@@ -49,6 +55,7 @@
         {{ end }}
       </section>
     {{ end }}
+  <!-- Image Gallery -->
   {{ else if eq .Section "gallery" }}
     <div class="gallery-carousel">
       {{ range where .Pages "Section" "gallery" }}
